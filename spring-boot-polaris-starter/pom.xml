@@ -11,19 +11,6 @@
     <artifactId>spring-boot-polaris-starter</artifactId>
     <modelVersion>4.0.0</modelVersion>
 
-    <distributionManagement>
-        <repository>
-            <id>pcm_common_public</id>
-            <name>internal repository for releases</name>
-            <url>https://mirrors.tencent.com/repository/maven/pcm-common</url>
-        </repository>
-        <snapshotRepository>
-            <id>pcm_common_snapshot</id>
-            <name>internal repository for snapshots</name>
-            <url>https://mirrors.tencent.com/repository/maven/pcm-common-snapshot</url>
-        </snapshotRepository>
-    </distributionManagement>
-
     <dependencies>
 
         <dependency>

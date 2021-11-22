@@ -21,19 +21,6 @@
         <revision>1.0.0-SNAPSHOT</revision>
     </properties>
 
-    <distributionManagement>
-        <repository>
-            <id>pcm_common_public</id>
-            <name>internal repository for releases</name>
-            <url>https://mirrors.tencent.com/repository/maven/pcm-common</url>
-        </repository>
-        <snapshotRepository>
-            <id>pcm_common_snapshot</id>
-            <name>internal repository for snapshots</name>
-            <url>https://mirrors.tencent.com/repository/maven/pcm-common-snapshot</url>
-        </snapshotRepository>
-    </distributionManagement>
-
     <dependencyManagement>
 
         <!-- base -->
