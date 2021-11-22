@@ -13,6 +13,7 @@ package com.tencent.nameservice.sdk;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.util.Enumeration;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * IP工具.
@@ -20,6 +21,7 @@ import java.util.Enumeration;
  * @author tenkye
  *         2017年6月6日 下午12:01:29
  */
+@Slf4j
 class IpUtil {
 
     /**
@@ -59,7 +61,7 @@ class IpUtil {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("Get local IP error", e);
         }
 
         if (null != ip) {
