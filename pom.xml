@@ -9,8 +9,7 @@
     <packaging>pom</packaging>
     <version>1.0.0-SNAPSHOT</version>
 
-    <name>sr-product-access</name>
-    <description>智慧零售-统一商品接入</description>
+    <name>spring-boot-polaris</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
