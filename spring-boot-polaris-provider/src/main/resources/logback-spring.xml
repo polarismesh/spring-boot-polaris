@@ -181,8 +181,6 @@
 
     <springProfile name="dev">
 
-        <logger name="com.tencent.nameservice.sdk.dao" level="DEBUG"/>
-
         <root level="INFO">
             <appender-ref ref="ASYNC_CONSOLE"/>
             <appender-ref ref="ASYNC_DEBUG"/>
@@ -194,8 +192,6 @@
     </springProfile>
 
     <springProfile name="test">
-
-        <logger name="com.tencent.nameservice.sdk.dao" level="DEBUG"/>
 
         <root level="DEBUG">
             <appender-ref ref="ASYNC_DEBUG"/>
