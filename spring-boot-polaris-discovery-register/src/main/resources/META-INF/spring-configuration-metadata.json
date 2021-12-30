@@ -1,0 +1,57 @@
+{
+  "groups": [
+    {
+      "name": "polaris.discovery.register",
+      "type": "cn.polarismesh.boot.discovery.register.properties.PolarisDiscoveryProperties",
+      "sourceType": "cn.polarismesh.boot.discovery.register.properties.PolarisDiscoveryProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "polaris.discovery.register.namespace",
+      "type": "java.lang.String",
+      "description": "namespace to register instance",
+      "sourceType": "cn.polarismesh.boot.discovery.register.properties.PolarisDiscoveryProperties"
+    },
+    {
+      "name": "polaris.discovery.register.host",
+      "type": "java.lang.String",
+      "description": "host to register instance",
+      "sourceType": "cn.polarismesh.boot.discovery.register.properties.PolarisDiscoveryProperties"
+    },
+    {
+      "name": "polaris.discovery.register.weight",
+      "type": "java.lang.Integer",
+      "description": "weight to register instance",
+      "defaultValue": 100,
+      "sourceType": "cn.polarismesh.boot.discovery.register.properties.PolarisDiscoveryProperties"
+    },
+    {
+      "name": "polaris.discovery.register.ttl",
+      "type": "java.lang.Integer",
+      "description": "ttl seconds to register instance",
+      "defaultValue": 30,
+      "sourceType": "cn.polarismesh.boot.discovery.register.properties.PolarisDiscoveryProperties"
+    },
+    {
+      "name": "polaris.discovery.register.token",
+      "type": "java.lang.String",
+      "description": "token to register instance",
+      "sourceType": "cn.polarismesh.boot.discovery.register.properties.PolarisDiscoveryProperties"
+    },
+    {
+      "name": "polaris.discovery.register.enable",
+      "type": "java.lang.Boolean",
+      "description": "enable register instance",
+      "defaultValue": false,
+      "sourceType": "cn.polarismesh.boot.discovery.register.properties.PolarisDiscoveryProperties"
+    },
+    {
+      "name": "polaris.discovery.register.metadata",
+      "type": "java.util.Map",
+      "description": "metadata to register instance",
+      "sourceType": "cn.polarismesh.boot.discovery.register.properties.PolarisDiscoveryProperties"
+    }
+  ],
+  "hints": []
+}

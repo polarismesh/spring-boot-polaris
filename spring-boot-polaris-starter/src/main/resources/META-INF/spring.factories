@@ -1,3 +1,0 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.tencent.nameservice.sdk.PolarisConsumerAutoConfiguration,\
-  com.tencent.nameservice.sdk.PolarisProviderAutoConfiguration
