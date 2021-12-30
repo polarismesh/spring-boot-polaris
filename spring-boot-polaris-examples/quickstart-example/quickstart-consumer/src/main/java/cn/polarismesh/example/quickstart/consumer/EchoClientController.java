@@ -17,8 +17,8 @@
 
 package cn.polarismesh.example.quickstart.consumer;
 
+import cn.polarismesh.boot.discovery.feign.PolarisFeignBuilder;
 import cn.polarismesh.boot.discovery.feign.PolarisFeignOptions;
-import cn.polarismesh.boot.discovery.feign.PolarisTargetBuilder;
 import feign.Feign;
 import feign.codec.StringDecoder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,11 +32,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class EchoClientController {
 
     @Autowired
-    private PolarisTargetBuilder targetBuilder;
+    private PolarisFeignBuilder targetBuilder;
 
     @GetMapping("/echo")
     public String echo(@RequestParam String value) {
         EchoServer echoServerBoot = Feign.builder().decoder(new StringDecoder())
+                .addCapability(targetBuilder.buildCircuitBreakCapability())
                 .target(targetBuilder.buildTarget(EchoServer.class,
                         PolarisFeignOptions.build().withService("EchoServerBoot")));
         return echoServerBoot.echo(value);

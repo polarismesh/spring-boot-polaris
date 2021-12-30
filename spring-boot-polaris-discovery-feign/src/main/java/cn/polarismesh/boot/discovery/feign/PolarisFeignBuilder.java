@@ -17,17 +17,31 @@
 package cn.polarismesh.boot.discovery.feign;
 
 import com.tencent.polaris.api.core.ConsumerAPI;
+import feign.Capability;
+import feign.Client;
 import feign.Target;
 
-public class PolarisTargetBuilder {
+public class PolarisFeignBuilder {
 
     private final ConsumerAPI consumerAPI;
 
-    public PolarisTargetBuilder(ConsumerAPI consumerAPI) {
+    public PolarisFeignBuilder(ConsumerAPI consumerAPI) {
         this.consumerAPI = consumerAPI;
     }
 
     public <T> Target<T> buildTarget(Class<T> clazz, PolarisFeignOptions polarisFeignOptions) {
         return new PolarisTarget<>(consumerAPI, clazz, polarisFeignOptions);
+    }
+
+    public Capability buildCircuitBreakCapability() {
+        return new PolarisCapability();
+    }
+
+    public class PolarisCapability implements Capability {
+
+        @Override
+        public Client enrich(Client client) {
+            return new PolarisFeignClient(client, consumerAPI);
+        }
     }
 }

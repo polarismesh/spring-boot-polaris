@@ -58,6 +58,8 @@ public class PolarisTarget<T> implements feign.Target<T> {
         Instance instance = choose();
         String url = String.format("%s://%s:%s", polarisFeignOptions.getScheme(),
                 instance.getHost(), instance.getPort());
+        input.header(PolarisFeignConst.HEADER_NAMESPACE, polarisFeignOptions.getNamespace())
+                .header(PolarisFeignConst.HEADER_SERVICE, polarisFeignOptions.getService());
         input.target(url);
         return input.request();
     }

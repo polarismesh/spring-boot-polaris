@@ -19,7 +19,9 @@ package cn.polarismesh.boot.discovery.feign;
 
 public interface PolarisFeignConst {
 
-    String CLIENT_NAME_SEP = ".";
-
     String DEFAULT_SCHEME = "http";
+
+    String HEADER_NAMESPACE = "x-polaris-namespace";
+
+    String HEADER_SERVICE = "x-polaris-service";
 }

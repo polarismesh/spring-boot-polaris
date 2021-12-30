@@ -17,7 +17,7 @@
 
 package cn.polarismesh.boot.discovery.feign.autoconfig;
 
-import cn.polarismesh.boot.discovery.feign.PolarisTargetBuilder;
+import cn.polarismesh.boot.discovery.feign.PolarisFeignBuilder;
 import com.tencent.polaris.api.core.ConsumerAPI;
 import com.tencent.polaris.client.api.SDKContext;
 import com.tencent.polaris.factory.api.DiscoveryAPIFactory;
@@ -35,7 +35,7 @@ public class FeignAutoConfiguration {
     }
 
     @Bean
-    public PolarisTargetBuilder polarisTargetBuilder(ConsumerAPI consumerAPI) {
-        return new PolarisTargetBuilder(consumerAPI);
+    public PolarisFeignBuilder polarisTargetBuilder(ConsumerAPI consumerAPI) {
+        return new PolarisFeignBuilder(consumerAPI);
     }
 }
