@@ -25,10 +25,13 @@ public class InstanceRegisterEvent extends ApplicationEvent {
 
     private final int ttl;
 
-    public InstanceRegisterEvent(Object source, InstanceKey instanceKey, int ttl) {
+    private final String token;
+
+    public InstanceRegisterEvent(Object source, InstanceKey instanceKey, int ttl, String token) {
         super(source);
         this.instanceKey = instanceKey;
         this.ttl = ttl;
+        this.token = token;
     }
 
     public InstanceKey getInstanceKey() {
@@ -37,5 +40,9 @@ public class InstanceRegisterEvent extends ApplicationEvent {
 
     public int getTtl() {
         return ttl;
+    }
+
+    public String getToken() {
+        return token;
     }
 }

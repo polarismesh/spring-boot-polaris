@@ -79,7 +79,7 @@ public class PolarisContextProperties {
         if (!CollectionUtils.isEmpty(addresses)) {
             serverAddress = addresses.get(0);
         }
-        if (!StringUtils.hasLength(serverAddress)) {
+        if (!StringUtils.hasText(serverAddress)) {
             return DEFAULT_LOCAL_HOST;
         }
         return getLocalHost(serverAddress);

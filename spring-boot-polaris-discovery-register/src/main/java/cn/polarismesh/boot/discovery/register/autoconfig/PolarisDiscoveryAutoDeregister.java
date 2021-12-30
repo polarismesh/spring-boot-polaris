@@ -57,17 +57,17 @@ public class PolarisDiscoveryAutoDeregister implements ApplicationListener<Conte
         InstanceDeregisterRequest deregisterRequest = new InstanceDeregisterRequest();
         deregisterRequest.setPort(polarisDiscoveryProperties.getPort());
         deregisterRequest.setService(polarisDiscoveryProperties.getApplicationName());
-        if (StringUtils.hasLength(polarisDiscoveryProperties.getHost())) {
+        if (StringUtils.hasText(polarisDiscoveryProperties.getHost())) {
             deregisterRequest.setHost(polarisDiscoveryProperties.getHost());
         } else {
             deregisterRequest.setHost(sdkContext.getConfig().getGlobal().getAPI().getBindIP());
         }
-        if (StringUtils.hasLength(polarisDiscoveryProperties.getNamespace())) {
+        if (StringUtils.hasText(polarisDiscoveryProperties.getNamespace())) {
             deregisterRequest.setNamespace(polarisDiscoveryProperties.getNamespace());
         } else {
             deregisterRequest.setNamespace(PolarisContextConst.DEFAULT_NAMESPACE);
         }
-        if (StringUtils.hasLength(polarisDiscoveryProperties.getToken())) {
+        if (StringUtils.hasText(polarisDiscoveryProperties.getToken())) {
             deregisterRequest.setToken(polarisDiscoveryProperties.getToken());
         }
         providerAPI.deRegister(deregisterRequest);

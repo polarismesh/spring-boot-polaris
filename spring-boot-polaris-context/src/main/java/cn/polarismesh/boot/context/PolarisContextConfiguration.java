@@ -58,7 +58,7 @@ public class PolarisContextConfiguration {
         public void modify(ConfigurationImpl configuration) {
             String addressStr = properties.getAddress();
             List<String> addresses = new ArrayList<>();
-            if (StringUtils.hasLength(addressStr)) {
+            if (StringUtils.hasText(addressStr)) {
                 String[] tokens = StringUtils.split(addressStr, PolarisContextConst.ADDRESS_SEP);
                 if (null != tokens) {
                     for (String token : tokens) {

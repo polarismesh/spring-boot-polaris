@@ -17,6 +17,8 @@
 
 package cn.polarismesh.boot.discovery.register.autoconfig;
 
+import com.tencent.polaris.api.core.ProviderAPI;
+import com.tencent.polaris.api.rpc.InstanceHeartbeatRequest;
 import com.tencent.polaris.client.util.NamedThreadFactory;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -26,15 +28,22 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.PayloadApplicationEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
+@Slf4j
 @Component
 public class HeartbeatHandler {
 
     private ScheduledExecutorService scheduledExecutorService;
 
     private final Map<InstanceKey, ScheduledFuture<?>> futures = new ConcurrentHashMap<>();
+
+    @Autowired
+    private ProviderAPI providerAPI;
 
     @PostConstruct
     public void init() {
@@ -48,22 +57,49 @@ public class HeartbeatHandler {
 
     @EventListener
     public void scheduleHeartbeat(InstanceRegisterEvent instanceRegisterEvent) {
-        ScheduledFuture<?> future = scheduledExecutorService.scheduleWithFixedDelay(new Runnable() {
-            @Override
-            public void run() {
-
-            }
-        }, instanceRegisterEvent.getTtl(), instanceRegisterEvent.getTtl(), TimeUnit.SECONDS);
-        futures.put(instanceRegisterEvent.getInstanceKey(), future);
+        ScheduledFuture<?> future = scheduledExecutorService.scheduleWithFixedDelay(
+                new HeartbeatTask(instanceRegisterEvent), instanceRegisterEvent.getTtl(),
+                instanceRegisterEvent.getTtl(), TimeUnit.SECONDS);
+        InstanceKey instanceKey = instanceRegisterEvent.getInstanceKey();
+        futures.put(instanceKey, future);
+        log.info("[Polaris] success to schedule heartbeat instance {}:{}, service is {}, namespace is {}",
+                instanceKey.getHost(), instanceKey.getPort(), instanceKey.getService(), instanceKey.getNamespace());
     }
 
     @EventListener
     public void cancelHeartbeat(InstanceDeregisterEvent instanceDeregisterEvent) {
-        ScheduledFuture<?> future = futures.get(instanceDeregisterEvent.getInstanceKey());
+        InstanceKey instanceKey = instanceDeregisterEvent.getInstanceKey();
+        ScheduledFuture<?> future = futures.get(instanceKey);
         if (null != future) {
             future.cancel(true);
         }
+        log.info("[Polaris] success to remove schedule heartbeat instance {}:{}, service is {}, namespace is {}",
+                instanceKey.getHost(), instanceKey.getPort(), instanceKey.getService(), instanceKey.getNamespace());
     }
 
+    private class HeartbeatTask implements Runnable {
 
+        private final InstanceRegisterEvent instanceRegisterEvent;
+
+        public HeartbeatTask(InstanceRegisterEvent instanceRegisterEvent) {
+            this.instanceRegisterEvent = instanceRegisterEvent;
+        }
+
+        @Override
+        public void run() {
+            InstanceHeartbeatRequest instanceHeartbeatRequest = new InstanceHeartbeatRequest();
+            instanceHeartbeatRequest.setNamespace(instanceRegisterEvent.getInstanceKey().getNamespace());
+            instanceHeartbeatRequest.setService(instanceRegisterEvent.getInstanceKey().getService());
+            instanceHeartbeatRequest.setHost(instanceRegisterEvent.getInstanceKey().getHost());
+            instanceHeartbeatRequest.setPort(instanceRegisterEvent.getInstanceKey().getPort());
+            instanceHeartbeatRequest.setToken(instanceRegisterEvent.getToken());
+            try {
+                HeartbeatHandler.this.providerAPI.heartbeat(instanceHeartbeatRequest);
+            } catch (Throwable e) {
+                log.error("[Polaris] fail to heartbeat instance {}:{}, service is {}, namespace is {}",
+                        instanceHeartbeatRequest.getHost(), instanceHeartbeatRequest.getPort(),
+                        instanceHeartbeatRequest.getService(), instanceHeartbeatRequest.getNamespace());
+            }
+        }
+    }
 }

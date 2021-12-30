@@ -28,6 +28,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.context.WebServerInitializedEvent;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -44,7 +45,7 @@ public class PolarisDiscoveryAutoRegister implements ApplicationListener<WebServ
     private ProviderAPI providerAPI;
 
     @Autowired
-    ApplicationContext applicationContext;
+    private ApplicationEventPublisher applicationEventPublisher;
 
     @Autowired
     private PolarisDiscoveryProperties polarisDiscoveryProperties;
@@ -57,17 +58,17 @@ public class PolarisDiscoveryAutoRegister implements ApplicationListener<WebServ
         InstanceRegisterRequest registerRequest = new InstanceRegisterRequest();
         registerRequest.setPort(polarisDiscoveryProperties.getPort());
         registerRequest.setService(polarisDiscoveryProperties.getApplicationName());
-        if (StringUtils.hasLength(polarisDiscoveryProperties.getHost())) {
+        if (StringUtils.hasText(polarisDiscoveryProperties.getHost())) {
             registerRequest.setHost(polarisDiscoveryProperties.getHost());
         } else {
             registerRequest.setHost(sdkContext.getConfig().getGlobal().getAPI().getBindIP());
         }
-        if (StringUtils.hasLength(polarisDiscoveryProperties.getNamespace())) {
+        if (StringUtils.hasText(polarisDiscoveryProperties.getNamespace())) {
             registerRequest.setNamespace(polarisDiscoveryProperties.getNamespace());
         } else {
             registerRequest.setNamespace(PolarisContextConst.DEFAULT_NAMESPACE);
         }
-        if (StringUtils.hasLength(polarisDiscoveryProperties.getToken())) {
+        if (StringUtils.hasText(polarisDiscoveryProperties.getToken())) {
             registerRequest.setToken(polarisDiscoveryProperties.getToken());
         }
         registerRequest.setTtl(polarisDiscoveryProperties.getTtl());
@@ -75,14 +76,14 @@ public class PolarisDiscoveryAutoRegister implements ApplicationListener<WebServ
             registerRequest.setWeight(polarisDiscoveryProperties.getWeight());
         }
         registerRequest.setMetadata(polarisDiscoveryProperties.getMetadata());
-
         providerAPI.register(registerRequest);
         log.info("[Polaris] success to register instance {}:{}, service is {}, namespace is {}",
                 registerRequest.getHost(), registerRequest.getPort(), registerRequest.getService(),
                 registerRequest.getNamespace());
         InstanceKey instanceKey = new InstanceKey(registerRequest.getNamespace(), registerRequest.getService(),
                 registerRequest.getHost(), registerRequest.getPort());
-        applicationContext.publishEvent(
-                new InstanceRegisterEvent(this, instanceKey, registerRequest.getTtl()));
+        InstanceRegisterEvent instanceRegisterEvent = new InstanceRegisterEvent(this, instanceKey,
+                registerRequest.getTtl(), registerRequest.getToken());
+        applicationEventPublisher.publishEvent(instanceRegisterEvent);
     }
 }
