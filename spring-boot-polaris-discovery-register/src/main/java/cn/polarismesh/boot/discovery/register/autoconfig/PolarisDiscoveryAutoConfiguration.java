@@ -24,9 +24,7 @@ import com.tencent.polaris.factory.api.DiscoveryAPIFactory;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 
-@ComponentScan
 @EnableConfigurationProperties(value = PolarisDiscoveryProperties.class)
 @ConditionalOnClass(name = "org.springframework.boot.context.properties.bind.Binder")
 public class PolarisDiscoveryAutoConfiguration {
@@ -44,5 +42,10 @@ public class PolarisDiscoveryAutoConfiguration {
     @Bean
     public PolarisDiscoveryAutoDeregister discoveryAutoDeregister() {
         return new PolarisDiscoveryAutoDeregister();
+    }
+
+    @Bean
+    public HeartbeatHandler heartbeatHandler() {
+        return new HeartbeatHandler();
     }
 }

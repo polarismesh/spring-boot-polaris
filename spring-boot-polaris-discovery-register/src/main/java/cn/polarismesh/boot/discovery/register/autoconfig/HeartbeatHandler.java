@@ -30,12 +30,9 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.PayloadApplicationEvent;
 import org.springframework.context.event.EventListener;
-import org.springframework.stereotype.Component;
 
 @Slf4j
-@Component
 public class HeartbeatHandler {
 
     private ScheduledExecutorService scheduledExecutorService;
@@ -47,7 +44,8 @@ public class HeartbeatHandler {
 
     @PostConstruct
     public void init() {
-        scheduledExecutorService = Executors.newSingleThreadScheduledExecutor(new NamedThreadFactory("polaris-heartbeat"));
+        scheduledExecutorService = Executors
+                .newSingleThreadScheduledExecutor(new NamedThreadFactory("polaris-heartbeat"));
     }
 
     @PreDestroy
