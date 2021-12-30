@@ -11,7 +11,7 @@
 1. 首先，修改 pom.xml 文件，引入 spring-boot-polaris-discovery-starter。
 ```
 <dependency>
-    <groupId>cn.polarismesh</groupId>
+    <groupId>com.tencent.polaris</groupId>
     <artifactId>spring-boot-polaris-discovery-starter</artifactId>
 </dependency>
 ```

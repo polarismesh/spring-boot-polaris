@@ -33,3 +33,6 @@ build/
 ### VS Code ###
 .vscode/
 applog/
+
+### Maven ignore ###
+.flattened-pom.xml

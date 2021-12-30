@@ -23,7 +23,7 @@ You should be able to get off the ground quite quickly by cloning the project yo
 <dependencyManagement>        
     <dependencies>
         <dependency>
-            <groupId>cn.polarismesh</groupId>
+            <groupId>com.tencent.polaris</groupId>
             <artifactId>spring-boot-polaris-dependencies</artifactId>
             <version>1.0.0</version>
             <type>pom</type>

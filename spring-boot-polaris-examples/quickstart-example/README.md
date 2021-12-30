@@ -11,7 +11,7 @@ This example illustrates how to use spring-boot-polaris for consumer or provider
 1. Add dependency spring-boot-polaris-discovery-starter in the pom.xml file in your project.
 ```
 <dependency>
-    <groupId>cn.polarismesh</groupId>
+    <groupId>com.tencent.polaris</groupId>
     <artifactId>spring-boot-polaris-discovery-starter</artifactId>
 </dependency>
 ```
