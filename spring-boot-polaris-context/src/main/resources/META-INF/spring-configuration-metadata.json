@@ -1,0 +1,18 @@
+{
+  "groups": [
+    {
+      "name": "polaris",
+      "type": "cn.polarismesh.boot.context.PolarisContextProperties",
+      "sourceType": "cn.polarismesh.boot.context.PolarisContextProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "polaris.address",
+      "type": "java.lang.String",
+      "description": "polaris server addresses",
+      "sourceType": "cn.polarismesh.boot.context.PolarisContextProperties"
+    }
+  ],
+  "hints": []
+}
