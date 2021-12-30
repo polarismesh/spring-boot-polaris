@@ -15,7 +15,7 @@
 
     <properties>
         <spring.boot.version>2.4.3</spring.boot.version>
-        <polaris.version>1.2.3-SNAPSHOT</polaris.version>
+        <polaris.version>1.2.3</polaris.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <skip.maven.deploy>false</skip.maven.deploy>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -110,6 +110,7 @@
                     </execution>
                 </executions>
                 <configuration>
+                    <release>11</release>
                     <tags>
                         <tag>
                             <name>date</name>
