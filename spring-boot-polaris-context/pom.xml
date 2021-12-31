@@ -11,6 +11,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>spring-boot-polaris-context</artifactId>
+    <name>SpringBoot Polaris Context</name>
+    <description>Global Context for SpringBoot Polaris</description>
 
     <dependencies>
         <dependency>

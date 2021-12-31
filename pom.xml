@@ -9,8 +9,8 @@
     <packaging>pom</packaging>
     <version>${revision}</version>
 
-    <name>Spring Boot Polaris</name>
-    <description>Spring Boot adapter for PolarisMesh</description>
+    <name>SpringBoot Polaris</name>
+    <description>SpringBoot adapter for PolarisMesh</description>
     <url>https://github.com/polarismesh/spring-boot-polaris</url>
 
     <properties>
@@ -22,7 +22,7 @@
         <java.version>1.8</java.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <revision>1.0.0-SNAPSHOT</revision>
+        <revision>1.0.0</revision>
         <openfeign.version>11.1</openfeign.version>
         <lombok.version>1.18.12</lombok.version>
         <!-- Maven Plugin Versions -->
@@ -110,7 +110,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <release>11</release>
+                    <!--<release>11</release>-->
                     <tags>
                         <tag>
                             <name>date</name>

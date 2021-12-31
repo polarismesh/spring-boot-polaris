@@ -11,6 +11,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>spring-boot-polaris-quickstart-consumer</artifactId>
+    <name>SpringBoot Polaris Quickstart Consumer</name>
+    <description>Consumer Module of SpringBoot Polaris Quickstart</description>
     <properties>
         <skip.maven.deploy>true</skip.maven.deploy>
     </properties>

@@ -11,6 +11,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>spring-boot-polaris-quickstart-provider</artifactId>
+    <name>SpringBoot Polaris Quickstart Provider</name>
+    <description>Provider Module of SpringBoot Polaris Quickstart</description>
+
     <properties>
         <skip.maven.deploy>true</skip.maven.deploy>
     </properties>

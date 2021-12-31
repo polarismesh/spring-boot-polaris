@@ -11,6 +11,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>spring-boot-polaris-discovery-feign</artifactId>
+    <name>SpringBoot Polaris Discovery Feign</name>
+    <description>Feign Adapter for SpringBoot Polaris Discovery</description>
 
     <dependencies>
         <dependency>
