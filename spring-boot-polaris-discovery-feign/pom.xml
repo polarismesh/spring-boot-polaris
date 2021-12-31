@@ -28,10 +28,6 @@
             <artifactId>spring-boot-polaris-context</artifactId>
             <version>${revision}</version>
         </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-        </dependency>
         <!-- feign -->
         <dependency>
             <groupId>io.github.openfeign</groupId>

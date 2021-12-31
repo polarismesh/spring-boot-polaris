@@ -32,3 +32,18 @@ polaris.address=grpc://127.0.0.1:8091
 
 - 启动被调方：找到 `quickstart-provider` 项目下，执行 `mvn clean package` 将工程编译打包，然后执行 `java -jar quickstart-provider-${version}.jar`
 - 启动主调方：找到 `quickstart-consumer` 项目下，执行 `mvn clean package` 将工程编译打包，然后执行 `java -jar quickstart-consumer-${version}.jar`
+
+### 验证
+
+#### 控制台验证
+
+登录polaris控制台，可以看到EchoServerBoot以及EchoClientBoot服务下存在对应的实例。
+
+#### HTTP调用
+
+执行http调用，其中`${app.port}`替换为consumer的监听端口（默认为11011）。
+```shell
+curl -L -X GET 'http://localhost:${app.port}/echo?value=hello_world''
+```
+
+预期返回值：`echo: hello_world`
