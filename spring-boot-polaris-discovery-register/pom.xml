@@ -11,6 +11,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>spring-boot-polaris-discovery-register</artifactId>
+    <name>SpringBoot Polaris Discovery Register</name>
+    <description>Register Adapter for SpringBoot Polaris Discovery</description>
 
     <dependencies>
         <dependency>

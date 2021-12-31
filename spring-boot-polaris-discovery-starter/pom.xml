@@ -10,7 +10,10 @@
     </parent>
 
     <artifactId>spring-boot-polaris-discovery-starter</artifactId>
+    <name>SpringBoot Polaris Discovery Starter</name>
+    <description>Starter for SpringBoot Polaris Discovery</description>
     <modelVersion>4.0.0</modelVersion>
+    <packaging>jar</packaging>
 
     <dependencies>
         <dependency>

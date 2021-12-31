@@ -12,8 +12,8 @@
 
     <artifactId>spring-boot-polaris-examples</artifactId>
     <packaging>pom</packaging>
-    <name>Spring Boot Polaris Examples</name>
-    <description>Examples of Spring Boot Polaris</description>
+    <name>SpringBoot Polaris Examples</name>
+    <description>Examples of SpringBoot Polaris</description>
     <modules>
         <module>quickstart-example</module>
     </modules>

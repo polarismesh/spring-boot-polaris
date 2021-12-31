@@ -14,8 +14,8 @@
 
     <version>${revision}</version>
     <packaging>pom</packaging>
-    <name>Spring Boot Polaris Dependencies</name>
-    <description>Spring Boot Polaris Dependencies</description>
+    <name>SpringBoot Polaris Dependencies</name>
+    <description>All Dependencies for SpringBoot Polaris</description>
 
     <dependencyManagement>
         <dependencies>

@@ -12,8 +12,8 @@
 
     <artifactId>spring-boot-polaris-quickstart-example</artifactId>
     <packaging>pom</packaging>
-    <name>Spring Boot Polaris QuickStart Example</name>
-    <description>QuickStart Example of Spring Boot Polaris</description>
+    <name>SpringBoot Polaris QuickStart Example</name>
+    <description>QuickStart Example of SpringBoot Polaris</description>
     <properties>
         <skip.maven.deploy>true</skip.maven.deploy>
     </properties>
