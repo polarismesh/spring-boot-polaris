@@ -21,9 +21,7 @@ import cn.polarismesh.boot.context.PolarisContextConst;
 import cn.polarismesh.boot.discovery.register.properties.PolarisDiscoveryProperties;
 import com.tencent.polaris.api.core.ProviderAPI;
 import com.tencent.polaris.api.rpc.InstanceDeregisterRequest;
-import com.tencent.polaris.api.rpc.InstanceRegisterRequest;
 import com.tencent.polaris.client.api.SDKContext;
-import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,9 +31,10 @@ import org.springframework.context.event.ContextClosedEvent;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
-@Slf4j
 @Component
 public class PolarisDiscoveryAutoDeregister implements ApplicationListener<ContextClosedEvent> {
+
+    private static final Logger LOG = LoggerFactory.getLogger(PolarisDiscoveryAutoDeregister.class);
 
     @Autowired
     private SDKContext sdkContext;
@@ -71,7 +70,7 @@ public class PolarisDiscoveryAutoDeregister implements ApplicationListener<Conte
             deregisterRequest.setToken(polarisDiscoveryProperties.getToken());
         }
         providerAPI.deRegister(deregisterRequest);
-        log.info("[Polaris] success to deregister instance {}:{}, service is {}, namespace is {}",
+        LOG.info("[Polaris] success to deregister instance {}:{}, service is {}, namespace is {}",
                 deregisterRequest.getHost(), deregisterRequest.getPort(), deregisterRequest.getService(),
                 deregisterRequest.getNamespace());
         InstanceKey instanceKey = new InstanceKey(deregisterRequest.getNamespace(), deregisterRequest.getService(),

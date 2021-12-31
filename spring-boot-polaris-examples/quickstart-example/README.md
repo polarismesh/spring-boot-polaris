@@ -29,5 +29,21 @@ polaris.address=grpc://127.0.0.1:8091
 - as consumer: Find main class `EchoClientApplication` in project `quickstart-consumer`, then execute the main method.
 
 2. Build a jar:
+
 - as provider: Execute command `mvn clean package` in project `quickstart-provider` to build a jar, then execute the jar with `java -jar ${jar-file}`
 - as consumer: Execute command `mvn clean package` in project `quickstart-consumer` to build a jar, then execute the jar with `java -jar ${jar-file}`
+
+### Verify
+
+#### Check polaris console
+
+Login into polaris console, and check the instances in Service `EchoServerBoot` and `EchoClientBoot`.
+
+#### Invoke by http call
+
+Invoke http call，replace `${app.port}` to the consumer port (11011 by default).
+```shell
+curl -L -X GET 'http://localhost:${app.port}/echo?value=hello_world''
+```
+
+expect：`echo: hello_world`

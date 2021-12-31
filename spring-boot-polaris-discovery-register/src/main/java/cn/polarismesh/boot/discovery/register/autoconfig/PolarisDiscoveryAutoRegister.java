@@ -22,21 +22,19 @@ import cn.polarismesh.boot.discovery.register.properties.PolarisDiscoveryPropert
 import com.tencent.polaris.api.core.ProviderAPI;
 import com.tencent.polaris.api.rpc.InstanceRegisterRequest;
 import com.tencent.polaris.client.api.SDKContext;
-import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.context.WebServerInitializedEvent;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
-import sun.security.jca.GetInstance.Instance;
 
-@Slf4j
 @Component
 public class PolarisDiscoveryAutoRegister implements ApplicationListener<WebServerInitializedEvent> {
+
+    private static final Logger LOG = LoggerFactory.getLogger(PolarisDiscoveryAutoRegister.class);
 
     @Autowired
     private SDKContext sdkContext;
@@ -77,7 +75,7 @@ public class PolarisDiscoveryAutoRegister implements ApplicationListener<WebServ
         }
         registerRequest.setMetadata(polarisDiscoveryProperties.getMetadata());
         providerAPI.register(registerRequest);
-        log.info("[Polaris] success to register instance {}:{}, service is {}, namespace is {}",
+        LOG.info("[Polaris] success to register instance {}:{}, service is {}, namespace is {}",
                 registerRequest.getHost(), registerRequest.getPort(), registerRequest.getService(),
                 registerRequest.getNamespace());
         InstanceKey instanceKey = new InstanceKey(registerRequest.getNamespace(), registerRequest.getService(),

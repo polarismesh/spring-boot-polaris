@@ -28,12 +28,14 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;
 
-@Slf4j
 public class HeartbeatHandler {
+
+    private static final Logger LOG = LoggerFactory.getLogger(HeartbeatHandler.class);
 
     private ScheduledExecutorService scheduledExecutorService;
 
@@ -60,7 +62,7 @@ public class HeartbeatHandler {
                 instanceRegisterEvent.getTtl(), TimeUnit.SECONDS);
         InstanceKey instanceKey = instanceRegisterEvent.getInstanceKey();
         futures.put(instanceKey, future);
-        log.info("[Polaris] success to schedule heartbeat instance {}:{}, service is {}, namespace is {}",
+        LOG.info("[Polaris] success to schedule heartbeat instance {}:{}, service is {}, namespace is {}",
                 instanceKey.getHost(), instanceKey.getPort(), instanceKey.getService(), instanceKey.getNamespace());
     }
 
@@ -71,7 +73,7 @@ public class HeartbeatHandler {
         if (null != future) {
             future.cancel(true);
         }
-        log.info("[Polaris] success to remove schedule heartbeat instance {}:{}, service is {}, namespace is {}",
+        LOG.info("[Polaris] success to remove schedule heartbeat instance {}:{}, service is {}, namespace is {}",
                 instanceKey.getHost(), instanceKey.getPort(), instanceKey.getService(), instanceKey.getNamespace());
     }
 
@@ -94,7 +96,7 @@ public class HeartbeatHandler {
             try {
                 HeartbeatHandler.this.providerAPI.heartbeat(instanceHeartbeatRequest);
             } catch (Throwable e) {
-                log.error("[Polaris] fail to heartbeat instance {}:{}, service is {}, namespace is {}",
+                LOG.error("[Polaris] fail to heartbeat instance {}:{}, service is {}, namespace is {}",
                         instanceHeartbeatRequest.getHost(), instanceHeartbeatRequest.getPort(),
                         instanceHeartbeatRequest.getService(), instanceHeartbeatRequest.getNamespace());
             }
