@@ -25,6 +25,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -46,8 +47,11 @@ public class HeartbeatHandler {
 
     @PostConstruct
     public void init() {
-        scheduledExecutorService = Executors
-                .newSingleThreadScheduledExecutor(new NamedThreadFactory("polaris-heartbeat"));
+        scheduledExecutorService = new ScheduledThreadPoolExecutor(1, r -> {
+            Thread t = new Thread(r);
+            t.setName("polaris-heartbeat");
+            return t;
+        });
     }
 
     @PreDestroy
