@@ -39,6 +39,11 @@
                 <artifactId>spring-boot-polaris-context</artifactId>
                 <version>${revision}</version>
             </dependency>
+            <dependency>
+                <groupId>com.tencent.polaris</groupId>
+                <artifactId>spring-boot-polaris-rate-limit</artifactId>
+                <version>${revision}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 </project>

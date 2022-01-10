@@ -225,5 +225,6 @@
         <module>spring-boot-polaris-discovery-register</module>
         <module>spring-boot-polaris-discovery-feign</module>
         <module>spring-boot-polaris-context</module>
+        <module>spring-boot-polaris-rate-limit</module>
     </modules>
 </project>
