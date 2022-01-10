@@ -26,19 +26,19 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 /**
  * @author quicksand - 2022/1/10
  */
-@RunWith(SpringRunner.class)
-@SpringBootTest(classes = TestApplication.class)
-@AutoConfigureMockMvc
-public class PolarisRateLimitTest {
-
-    @Autowired
-    private MockMvc mvc;
-
-    @Test
-    public void testBase() throws Exception {
-        String url = "/hello";
-        MvcResult mvcResult  = mvc.perform(get(url)).andReturn();
-        Assertions.assertEquals(mvcResult.getResponse().getContentAsString(),"hello");
-    }
-
-}
+//@RunWith(SpringRunner.class)
+//@SpringBootTest(classes = TestApplication.class)
+//@AutoConfigureMockMvc
+//public class PolarisRateLimitTest {
+//
+//    @Autowired
+//    private MockMvc mvc;
+//
+//    @Test
+//    public void testBase() throws Exception {
+//        String url = "/hello";
+//        MvcResult mvcResult  = mvc.perform(get(url)).andReturn();
+//        Assertions.assertEquals(mvcResult.getResponse().getContentAsString(),"hello");
+//    }
+//
+//}
