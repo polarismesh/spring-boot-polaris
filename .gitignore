@@ -36,3 +36,6 @@ applog/
 
 ### Maven ignore ###
 .flattened-pom.xml
+
+### polaris backup ###
+**/polaris/backup/**

@@ -29,4 +29,6 @@ public interface PolarisContextConst {
     String DEFAULT_LOCAL_HOST = "127.0.0.1";
 
     String DEFAULT_NAMESPACE= "default";
+
+    String HEADER_RATE_LIMIT_LABELS_PREFIX= "polaris-rate-limit-labels-";
 }
