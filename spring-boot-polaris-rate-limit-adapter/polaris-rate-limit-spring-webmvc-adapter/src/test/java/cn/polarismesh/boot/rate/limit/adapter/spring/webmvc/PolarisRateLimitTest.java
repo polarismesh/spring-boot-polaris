@@ -32,7 +32,7 @@ public class PolarisRateLimitTest {
     public void testRateLimit() throws Exception {
         String url = "/hello";
         mvc.perform(get(url)).andReturn();
-        mvc.perform(get(url)).andExpect(status().isOk()).andExpect(content().string("Too Many Requests"));
+        mvc.perform(get(url)).andExpect(status().isTooManyRequests());
     }
 
 }

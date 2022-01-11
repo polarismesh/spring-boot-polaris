@@ -7,6 +7,7 @@ import com.tencent.polaris.ratelimit.api.core.LimitAPI;
 import com.tencent.polaris.ratelimit.api.rpc.QuotaRequest;
 import com.tencent.polaris.ratelimit.api.rpc.QuotaResponse;
 import com.tencent.polaris.ratelimit.api.rpc.QuotaResultCode;
+import java.io.PrintWriter;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
@@ -33,6 +34,15 @@ public class PolarisRateLimitWebInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
         Object handler) throws Exception {
+        try{
+            return isLimit(request);
+        }catch (RateLimitException e){
+            handleRateLimitException(request,response,e);
+            return false;
+        }
+    }
+
+    protected boolean isLimit(HttpServletRequest request) throws RateLimitException {
         QuotaRequest quotaRequest = new QuotaRequest();
         quotaRequest.setNamespace(polarisRateLimitProperties.getNamespace());
         quotaRequest.setService(polarisRateLimitProperties.getApplicationName());
@@ -41,7 +51,6 @@ public class PolarisRateLimitWebInterceptor implements HandlerInterceptor {
         quotaRequest.setCount(1);
         QuotaResponse quotaResponse = limitAPI.getQuota(quotaRequest);
         boolean isLimit = QuotaResultCode.QuotaResultLimited.equals(quotaResponse.getCode());
-
         if (isLimit) {
             throw new RateLimitException("Too Many Requests");
         }
@@ -61,6 +70,14 @@ public class PolarisRateLimitWebInterceptor implements HandlerInterceptor {
             }
         }
         return labelsMap;
+    }
+
+    protected void handleRateLimitException(HttpServletRequest request, HttpServletResponse response, RateLimitException e) throws Exception {
+        response.setStatus(429);
+        PrintWriter out = response.getWriter();
+        out.print("Too Many Requests");
+        out.flush();
+        out.close();
     }
 
 }
