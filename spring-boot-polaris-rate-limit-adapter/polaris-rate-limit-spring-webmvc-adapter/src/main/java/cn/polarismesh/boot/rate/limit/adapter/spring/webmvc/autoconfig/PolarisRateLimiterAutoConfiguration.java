@@ -1,6 +1,6 @@
 package cn.polarismesh.boot.rate.limit.adapter.spring.webmvc.autoconfig;
 
-import cn.polarismesh.boot.context.PolarisContextConst;
+import cn.polarismesh.boot.rate.limit.adapter.spring.webmvc.PolarisRateLimitConst;
 import cn.polarismesh.boot.rate.limit.adapter.spring.webmvc.PolarisRateLimitWebInterceptor;
 import cn.polarismesh.boot.rate.limit.adapter.spring.webmvc.PolarisRateLimitWebInterceptorConfig;
 import cn.polarismesh.boot.rate.limit.adapter.spring.webmvc.properties.PolarisRateLimitProperties;
@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Configuration;
  * @author quicksand - 2022/1/10
  */
 @Configuration
-@ConditionalOnProperty(prefix = PolarisContextConst.PREFIX, name = "rate-limit.enable", havingValue = "true")
+@ConditionalOnProperty(prefix = PolarisRateLimitConst.PREFIX, name = "enable", havingValue = "true")
 @EnableConfigurationProperties(value = PolarisRateLimitProperties.class)
 public class PolarisRateLimiterAutoConfiguration {
 

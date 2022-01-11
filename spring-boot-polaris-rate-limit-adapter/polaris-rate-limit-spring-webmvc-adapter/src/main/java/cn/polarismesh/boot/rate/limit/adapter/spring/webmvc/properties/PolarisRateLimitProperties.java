@@ -17,20 +17,23 @@
 
 package cn.polarismesh.boot.rate.limit.adapter.spring.webmvc.properties;
 
-import cn.polarismesh.boot.context.PolarisContextConst;
+import cn.polarismesh.boot.rate.limit.adapter.spring.webmvc.PolarisRateLimitConst;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
  * @author quicksand - 2022/1/10
  */
-@ConfigurationProperties(prefix = PolarisContextConst.PREFIX)
+@ConfigurationProperties(prefix = PolarisRateLimitConst.PREFIX)
 public class PolarisRateLimitProperties {
 
-    private String namespace = PolarisContextConst.DEFAULT_NAMESPACE;
+    @Value("${polaris.discovery.register.namespace:default}")
+    private String namespace;
 
     @Value("${spring.application.name:}")
     private String applicationName;
+
+    private String labelsPrefixKey;
 
     public String getNamespace() {
         return namespace;
@@ -48,4 +51,11 @@ public class PolarisRateLimitProperties {
         this.applicationName = applicationName;
     }
 
+    public String getLabelsPrefixKey() {
+        return labelsPrefixKey;
+    }
+
+    public void setLabelsPrefixKey(String labelsPrefixKey) {
+        this.labelsPrefixKey = labelsPrefixKey;
+    }
 }

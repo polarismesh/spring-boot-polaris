@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 /**
@@ -35,7 +36,7 @@ public class PolarisRateLimitWebInterceptor implements HandlerInterceptor {
         QuotaRequest quotaRequest = new QuotaRequest();
         quotaRequest.setNamespace(polarisRateLimitProperties.getNamespace());
         quotaRequest.setService(polarisRateLimitProperties.getApplicationName());
-        quotaRequest.setMethod(request.getRequestURI());
+        quotaRequest.setMethod(request.getPathInfo());
         quotaRequest.setLabels(parseLabels(request));
         quotaRequest.setCount(1);
         QuotaResponse quotaResponse = limitAPI.getQuota(quotaRequest);
@@ -48,6 +49,9 @@ public class PolarisRateLimitWebInterceptor implements HandlerInterceptor {
     }
 
     protected Map<String, String> parseLabels(HttpServletRequest request) {
+        if (!StringUtils.hasText(polarisRateLimitProperties.getLabelsPrefixKey())) {
+            return null;
+        }
         Map<String, String> labelsMap = new HashMap<>();
         Enumeration<String> headerNames = request.getHeaderNames();
         while (headerNames.hasMoreElements()) {

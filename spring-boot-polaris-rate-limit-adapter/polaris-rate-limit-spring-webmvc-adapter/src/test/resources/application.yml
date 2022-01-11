@@ -5,6 +5,7 @@ polaris:
       enable: true
   rate-limit:
     enable: true
+    labels-prefix-key:  x-polaris-
 server:
   port: 8888
 spring:
