@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.springframework.http.HttpStatus;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
 
@@ -73,9 +74,9 @@ public class PolarisRateLimitWebInterceptor implements HandlerInterceptor {
     }
 
     protected void handleRateLimitException(HttpServletRequest request, HttpServletResponse response, RateLimitException e) throws Exception {
-        response.setStatus(429);
+        response.setStatus(HttpStatus.TOO_MANY_REQUESTS.value());
         PrintWriter out = response.getWriter();
-        out.print("Too Many Requests");
+        out.print(HttpStatus.TOO_MANY_REQUESTS.getReasonPhrase());
         out.flush();
         out.close();
     }
