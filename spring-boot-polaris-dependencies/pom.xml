@@ -41,7 +41,7 @@
             </dependency>
             <dependency>
                 <groupId>com.tencent.polaris</groupId>
-                <artifactId>spring-boot-polaris-rate-limit-adapter</artifactId>
+                <artifactId>spring-boot-polaris-ratelimit</artifactId>
                 <version>${revision}</version>
             </dependency>
         </dependencies>
