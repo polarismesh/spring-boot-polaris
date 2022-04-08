@@ -25,65 +25,10 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        <!-- Polaris dependencies start -->
-        <dependency>
-            <groupId>com.tencent.polaris</groupId>
-            <artifactId>polaris-client</artifactId>
-        </dependency>
 
         <dependency>
             <groupId>com.tencent.polaris</groupId>
-            <artifactId>polaris-plugin-api</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.tencent.polaris</groupId>
-            <artifactId>connector-polaris-grpc</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.tencent.polaris</groupId>
-            <artifactId>registry-memory</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.tencent.polaris</groupId>
-            <artifactId>flow-cache-expired</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.tencent.polaris</groupId>
-            <artifactId>router-isolated</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.tencent.polaris</groupId>
-            <artifactId>router-healthy</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.tencent.polaris</groupId>
-            <artifactId>router-rule</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.tencent.polaris</groupId>
-            <artifactId>router-nearby</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.tencent.polaris</groupId>
-            <artifactId>router-metadata</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.tencent.polaris</groupId>
-            <artifactId>loadbalancer-random</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.tencent.polaris</groupId>
-            <artifactId>loadbalancer-ringhash</artifactId>
+            <artifactId>polaris-factory</artifactId>
         </dependency>
     </dependencies>
 </project>
