@@ -15,14 +15,14 @@
 
     <properties>
         <spring.boot.version>2.4.3</spring.boot.version>
-        <polaris.version>1.2.3</polaris.version>
+        <polaris.version>1.3.1</polaris.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <skip.maven.deploy>false</skip.maven.deploy>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <revision>1.0.1</revision>
+        <revision>1.1.0</revision>
         <openfeign.version>11.1</openfeign.version>
         <!-- Maven Plugin Versions -->
         <jacoco.version>0.8.3</jacoco.version>
@@ -34,21 +34,32 @@
         <maven.javadoc.plugin.version>3.2.0</maven.javadoc.plugin.version>
     </properties>
 
+    <developers>
+        <developer>
+            <id>SkyeBeFreeman</id>
+            <name>Haotian Zhang</name>
+            <email>928016560@qq.com</email>
+            <organization>Tencent</organization>
+            <url>https://github.com/SkyeBeFreeman/</url>
+        </developer>
+    </developers>
+
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <artifactId>polaris-dependencies</artifactId>
+                <groupId>com.tencent.polaris</groupId>
+                <version>${polaris.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
                 <version>${spring.boot.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
-            </dependency>
-
-            <!-- polaris -->
-            <dependency>
-                <groupId>com.tencent.polaris</groupId>
-                <artifactId>polaris-all</artifactId>
-                <version>${polaris.version}</version>
             </dependency>
 
             <!-- feign -->

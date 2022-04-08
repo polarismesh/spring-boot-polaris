@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://maven.apache.org/POM/4.0.0"
         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>spring-boot-polaris</artifactId>
@@ -25,9 +25,65 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <!-- Polaris dependencies start -->
         <dependency>
             <groupId>com.tencent.polaris</groupId>
-            <artifactId>polaris-all</artifactId>
+            <artifactId>polaris-client</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.tencent.polaris</groupId>
+            <artifactId>polaris-plugin-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.tencent.polaris</groupId>
+            <artifactId>connector-polaris-grpc</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.tencent.polaris</groupId>
+            <artifactId>registry-memory</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.tencent.polaris</groupId>
+            <artifactId>flow-cache-expired</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.tencent.polaris</groupId>
+            <artifactId>router-isolated</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.tencent.polaris</groupId>
+            <artifactId>router-healthy</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.tencent.polaris</groupId>
+            <artifactId>router-rule</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.tencent.polaris</groupId>
+            <artifactId>router-nearby</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.tencent.polaris</groupId>
+            <artifactId>router-metadata</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.tencent.polaris</groupId>
+            <artifactId>loadbalancer-random</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.tencent.polaris</groupId>
+            <artifactId>loadbalancer-ringhash</artifactId>
         </dependency>
     </dependencies>
 </project>

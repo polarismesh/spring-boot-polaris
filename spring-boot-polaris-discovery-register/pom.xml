@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://maven.apache.org/POM/4.0.0"
         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>spring-boot-polaris</artifactId>
@@ -15,10 +15,25 @@
     <description>Register Adapter for SpringBoot Polaris Discovery</description>
 
     <dependencies>
+        <!-- Polaris dependencies start -->
         <dependency>
             <groupId>com.tencent.polaris</groupId>
-            <artifactId>polaris-all</artifactId>
+            <artifactId>polaris-discovery-factory</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.tencent.polaris</groupId>
+            <artifactId>polaris-test-common</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.tencent.polaris</groupId>
+            <artifactId>polaris-test-mock-discovery</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!-- Polaris dependencies end -->
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot</artifactId>
