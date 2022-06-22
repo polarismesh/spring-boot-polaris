@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  cn.polarismesh.boot.ratelimit.spring.webmvc.autoconfig.PolarisRateLimiterAutoConfiguration
