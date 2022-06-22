@@ -1,10 +1,16 @@
-spring-boot-polaris
-========================================
+# Spring Boot with Polaris
+
 English | [简体中文](./README-zh.md)
 
 ---
 
+## Introduction
+
 spring-boot-polaris is the polaris adapter for SpringBoot，application based on SpringBoot can use spring-boot-polaris access polaris quickly.
+
+Spring Cloud Tencent provide an integration solution for Spring Cloud and Tencent middleware, include PolarisMesh.
+
+Please see [Spring Cloud Tencent](https://github.com/Tencent/spring-cloud-tencent)
 
 ## How to build
 

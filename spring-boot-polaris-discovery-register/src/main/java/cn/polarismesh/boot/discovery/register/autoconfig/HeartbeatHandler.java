@@ -19,10 +19,8 @@ package cn.polarismesh.boot.discovery.register.autoconfig;
 
 import com.tencent.polaris.api.core.ProviderAPI;
 import com.tencent.polaris.api.rpc.InstanceHeartbeatRequest;
-import com.tencent.polaris.client.util.NamedThreadFactory;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
@@ -34,14 +32,16 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;
 
+/**
+ * Heartbeat handler.
+ *
+ * @author Haotian Zhang
+ */
 public class HeartbeatHandler {
 
     private static final Logger LOG = LoggerFactory.getLogger(HeartbeatHandler.class);
-
-    private ScheduledExecutorService scheduledExecutorService;
-
     private final Map<InstanceKey, ScheduledFuture<?>> futures = new ConcurrentHashMap<>();
-
+    private ScheduledExecutorService scheduledExecutorService;
     @Autowired
     private ProviderAPI providerAPI;
 
@@ -102,7 +102,7 @@ public class HeartbeatHandler {
             } catch (Throwable e) {
                 LOG.error("[Polaris] fail to heartbeat instance {}:{}, service is {}, namespace is {}",
                         instanceHeartbeatRequest.getHost(), instanceHeartbeatRequest.getPort(),
-                        instanceHeartbeatRequest.getService(), instanceHeartbeatRequest.getNamespace());
+                        instanceHeartbeatRequest.getService(), instanceHeartbeatRequest.getNamespace(), e);
             }
         }
     }
