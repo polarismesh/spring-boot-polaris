@@ -20,39 +20,46 @@ package cn.polarismesh.boot.context;
 import com.tencent.polaris.api.exception.PolarisException;
 import com.tencent.polaris.client.api.SDKContext;
 import com.tencent.polaris.factory.config.ConfigurationImpl;
-import java.net.URI;
-import java.util.ArrayList;
-import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.util.StringUtils;
+
+import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Configuration for Polaris {@link SDKContext}
  *
  * @author Haotian Zhang
  */
+@Configuration(proxyBeanMethods = false)
 @EnableConfigurationProperties(PolarisContextProperties.class)
-public class PolarisContextConfiguration {
+public class PolarisContextAutoConfiguration {
 
     @Bean(name = "sdkContext", initMethod = "init", destroyMethod = "destroy")
     @ConditionalOnMissingBean
-    public SDKContext sdkContext(PolarisContextProperties properties) throws PolarisException {
-        return SDKContext.initContextByConfig(properties.configuration());
+    public SDKContext sdkContext(ObjectProvider<List<PolarisConfigModifier>> modifierListProvider) throws PolarisException {
+        PolarisConfigurationFactory configurationFactory = new PolarisConfigurationFactory(modifierListProvider.getIfUnique());
+        return SDKContext.initContextByConfig(configurationFactory.configuration());
     }
 
     @Bean
     @ConditionalOnMissingBean
-    public PolarisConfigModifier polarisConfigModifier() {
-        return new ModifyAddress();
+    public PolarisConfigModifier polarisConfigModifier(PolarisContextProperties properties) {
+        return new ModifyAddress(properties);
     }
 
     private static class ModifyAddress implements PolarisConfigModifier {
 
-        @Autowired
-        private PolarisContextProperties properties;
+        private final PolarisContextProperties properties;
+
+        public ModifyAddress(PolarisContextProperties properties) {
+            this.properties = properties;
+        }
 
         @Override
         public void modify(ConfigurationImpl configuration) {
